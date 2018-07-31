@@ -20,7 +20,24 @@ type Msg
 
 view : Taco -> Model -> Html Msg
 view taco model =
-    text "Home page"
+    let
+        marker : Marker
+        marker =
+            { position = { lat = 6.211003, lng = -75.5630472 }
+            , title = "Daniel Cardona Rojas"
+            , draggable = False
+            , infoWindow = Just { content = "Daniel Cardona" }
+            }
+    in
+    List.singleton marker
+        |> GoogleMap.map
+            [ attribute "map-type" "roadmap"
+            , attribute "zoom" "10"
+            , attribute "zoom-control" "false"
+            , attribute "fit-to-markers" ""
+            , attribute "draggable" "true"
+            , id "home-map"
+            ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
