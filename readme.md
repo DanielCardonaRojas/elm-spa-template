@@ -1,9 +1,10 @@
 # elm-spa-template
 
-This is a starter template to build a spa like application in elm
-it uses the following approach: 
+This is a starter template to build spa like applications in elm
 
-- Module structure like the one Krisajenkins is encouraged, although initially for small modules view, state and types 
+## Arquitecture
+
+- Module structure like the one Kris Jenkins is encouraged, although initially for small modules view, state and types 
 can live in the same file. Once it starts growing create a folder with with State.elm View.elm and Types.elm modules.
 Every page goes inside the Pages folder.
 
@@ -11,23 +12,23 @@ Every page goes inside the Pages folder.
 instead of using Flags. This really improves on simplifying requests functions avoiding having to pass an extra parameter every time.
 These type of configurations are set in the .env file and configured in webpack.config.json.
 
+- Taco pattern is used for globally relevant data. Look at Data.Taco module. 
+
 - Child parent communication through translator patter (smart tags) all child module
-expose a normal TEA interface view, update, init, subscriptions it also defines its own Model and Msg types.
+expose a normal TEA interface signatures for (view, update, init, subscriptions) it also defines its own Model and Msg types.
 The parent module should define a translator which is just a `Child.Msg -> Parent.Msg` mapping, and Cmd.map and Html.map where
 ever necesary.
 
+- Using Ports for UI stuff is discouraged so custom events are used in conjuction with custom elements. 
 
-- Third party widgets are rapped in custom elements, this template provide a GoogleMaps, Flatpickr date time picker
-and Dropzonejs custom element.
-
-- Menu items are selected base on a list zipper data structure
+- Styling is done with sass and animations are done with elm-style-animations package.
 
 
 ## Features
 
-- Custom elements with elm module ready to use:
+- Custom elements with elm modules ready to use (e.g View/GoogleMap.elm with custom element webcomponents/GoogleMap.js):
     - Google Maps: Custom element (Markers are passed int through a property instead of nested html tags)
-    - Flatpickr: Custom element Datetime picker
+    - Flatpickr: Custom element Datetime picker (View/Flatpickr.elm)
     - Dropzonejs: Custom element upload files
 
 - SocketIO port module ready to go
@@ -42,20 +43,15 @@ and Dropzonejs custom element.
 
 - Setup deployment through surge.sh
 
-- Continues integration setup for gitlab
+- Continiuos integration setup for gitlab
 
-- git hooks setup with husky for automatically run test on commits install new npm and elm dependencies on pull and merges.
+- git hooks setup with husky for automatically running tests on each commits, to install new npm and elm dependencies on pull and merges.
 
 - Hot reloading setup with webpack-dev-server
 
 # Install dependencies
 
 ```shell
-# If you don't have yarn
-brew install yarn
-yarn global add elm 
-# Alternatively sudo npm install -g elm --unsafe-perm=true
-
 # Install npm and elm packages
 yarn install
 elm-package install -y
@@ -64,7 +60,6 @@ elm-package install -y
 # Run development server
 
 ```shell
-# Make shure you edit the .env file to set the api base url and version.
 # Run development server
 yarn start
 ```
@@ -72,15 +67,55 @@ yarn start
 # Build and deploy
 
 ```shell
-yarn build
-
 # Deploy to surge.sh
+yarn build
 yarn deploy
 ```
 
 # Run tests
 
 ```shell
-yarn global add elm-test
 elm-test
 ```
+
+# Directory structure
+
+```text
+├── Data
+│   ├── Authentication.elm
+│   ├── Flags.elm
+│   ├── Notification.elm
+│   ├── Route.elm
+│   ├── Session.elm
+│   ├── Taco.elm
+│   ├── Theme.elm
+│   └── Types.elm
+├── Page
+│   ├── Home.elm
+│   ├── Login.elm
+│   └── Signup.elm
+├── Ports
+│   ├── Echo.elm
+│   ├── LocalStorage.elm
+│   └── SocketIO.elm
+├── Utilities
+│   ├── Geolocation.elm
+│   ├── Misc.elm
+│   └── Parsers.elm
+├── View
+│   ├── Animations.elm
+│   ├── Components.elm
+│   ├── Dropzone.elm
+│   ├── FlatPickr.elm
+│   ├── GoogleMap.elm
+│   ├── Spinners.elm
+│   └── Toast.elm
+├── Application.elm
+├── Constants.elm
+├── Model.elm
+├── Msgs.elm
+├── Requests.elm
+├── Router.elm
+└── View.elm
+```
+
