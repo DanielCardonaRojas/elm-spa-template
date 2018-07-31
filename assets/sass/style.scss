@@ -1,0 +1,174 @@
+@import 'theme';
+
+.no-bottom-border {
+	border-bottom: none !important;
+}
+
+aside {
+    @include themify($theme-colors) {
+        background-color: themed('surface-dark');
+        color: themed('on-surface');
+    }
+
+    a.is-active {
+        border-left-width: 3px;
+        border-left-style: solid;
+        @include themify($theme-colors) {
+            background-color: themed('primary');
+            color: themed('on-primary');
+            border-left-color: themed('secondary');
+        }
+    }
+
+    a:hover {
+        @include themify($theme-colors) {
+            background-color: themed('primary');
+            color: themed('on-primary');
+        }
+    }
+}
+
+nav.template-header {
+
+    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+
+    @include themify($theme-colors) {
+        background-color: themed('surface');
+        color: themed('on-surface');
+    }
+
+    .navbar-brand {
+        font-weight: 800; 
+    }
+
+    a {
+        @include themify($theme-colors) {
+            color: themed('on-surface');
+        }
+    }
+
+    a:hover {
+        @include themify($theme-colors) {
+            border-bottom-color: themed('secondary');
+        }
+    }
+
+}
+
+main {
+
+    @include themify($theme-colors) {
+        background-color: themed('background');
+        color: themed('on-background');
+    }
+
+
+    .button.is-link {
+        @include themify($theme-colors) {
+            background-color: themed('secondary-dark');
+            color: themed('on-secondary');
+        }
+    }
+
+    .settings {
+        opacity: 0.96;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-top-width: 2px;
+        border-top-style: solid;
+        border-left-width: 1px;
+        border-left-style: solid;
+        @include themify($theme-colors) {
+            background-color: themed('surface');
+            color: themed('on-surface');
+            border-top-color: themed('primary');
+            border-left-color: themed('background');
+        }
+
+        a {
+            @include themify($theme-colors) {
+                color: themed('on-surface');
+            }
+        }
+    }
+}
+
+.box {
+    @include themify($theme-colors) {
+        background-color: themed('surface');
+        color: themed('on-surface');
+    }
+
+}
+
+// HOME
+
+google-map#home-map{
+    --google-map-height: 80vh;
+    width: 100%;
+}
+
+ol.toast-stack > li {
+    margin-bottom: 10px;
+}
+
+.template-footer {
+    @include themify($theme-colors) {
+        background-color: themed('primary-dark');
+        color: themed('on-primary');
+    }
+}
+
+//  LOGIN SIGNUP
+
+.form-container {
+  margin-top: 10%;
+  width: 95%;
+  max-width: 600px;
+  padding: 2rem;
+  border-radius: 15px;
+  @include themify($theme-colors) {
+    background-color: themed('primary');
+  }
+
+  .tabs {
+    .is-active a {
+        @include themify($theme-colors) {
+            color: themed('secondary');
+            border-bottom-color: themed('secondary');
+        }
+    }
+
+    a:hover {
+        @include themify($theme-colors) {
+            color: themed('on-primary');
+        }
+    }
+  }
+}
+
+.login-signup {
+  @include themify-root($theme-colors) {
+        background-color: themed('secondary-dark');
+    }
+
+}
+
+.popup.confirmation {
+   text-align: center;
+}
+
+//LightShow Create Form
+form.create {
+   min-height: 32rem;
+}
+
+
+.toast-stack {
+    .message {
+        //@include themify($theme-colors) {
+            //background-color: themed('primary-light');
+            //color: themed('on-primary');
+        //}
+    }
+}

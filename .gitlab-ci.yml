@@ -1,0 +1,13 @@
+image: node:latest
+
+before_script:
+  - export PATH=$PWD/node_modules/.bin:$PATH # we don't have perms to install with -g
+  - npm install elm
+  - elm --version
+  - npm -v
+
+elm-test:
+  script:
+    - npm install elm-test
+    - elm-test --version
+    - elm-test

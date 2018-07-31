@@ -1,0 +1,16 @@
+:host() {
+	width: 100%;
+	height: 200px;
+}
+
+.dropzone {
+	border: var(--dropzone-border, 4px dashed #b5b5b5 !important);
+	background-color: var(--dropzone-bg-color, white);
+	border-style: var(--dropzone-border-style, dashed);
+    border-color: var(--dropzone-border-color, #ccc);
+    border-width: var(--dropzone-border-width, 2px);
+}
+
+.dz-message {
+	font-weight: bold;
+}
